@@ -1,0 +1,128 @@
+* {
+    margin: auto;
+    padding: 0%;
+}
+body {
+    background-image: url(https://filearmy.s3.amazonaws.com/2017/05/02/8ywH7KB.jpg)
+    
+} 
+.conteiner {
+    width: 600px;
+    height: auto;
+
+}
+.mini-text {
+    width: 500px;
+    height: 405px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #eeeeee;
+}
+.footer {
+    width: 520px;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+    display: block;
+    margin-top: 20px;
+
+    
+}
+.mini-text a{
+    text-decoration: none;
+    text-align: end;
+    color: black;
+    display: block;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    
+}
+.mini-title{
+    width: 500px;
+    height: 30px;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    font-size: 15px;
+}
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Yusei Magic', sans-serif;
+
+
+}
+#sosyal-mecralar{
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    display: block;
+}
+
+
+
+
+
+@media screen and (max-width: 600px){
+    * {
+        margin: auto;
+        padding: 0%;
+    }
+    body {
+        background-image: url(https://filearmy.s3.amazonaws.com/2017/05/02/8ywH7KB.jpg)
+        
+    } 
+    .conteiner {
+        width: 100%;
+        height: auto;
+    }
+    .mini-text {
+        width: 90%;
+        height: 100%;
+        
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 10px;
+        font-family: 'Roboto Condensed', sans-serif;
+        background-color: #eeeeee;
+    }
+    .footer {
+        width: 95%;
+        height: auto;
+        border: 1px solid black;
+        margin-top: 5px;
+        text-align: center;
+        background-color: #eeeeee;
+        
+    }
+    .mini-text a{
+        text-decoration: none;
+        text-align: end;
+        color: black;
+        display: block;
+        margin-bottom: 5px;
+        
+    }
+    .mini-title{
+        width: 100%;
+        height: 30%;
+        text-align: center;
+        font-family: 'Roboto Slab', serif;
+        font-size: 15px;
+    }
+    h1 {
+        text-align: center;
+        color: #ffffff;
+        font-family: 'Yusei Magic', sans-serif;
+    
+    
+    }  
+}
