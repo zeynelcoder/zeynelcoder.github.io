@@ -1,5 +1,5 @@
 body {
-    font-size: 10pt;
+    font-size: 13pt;
     margin: 0px;
     padding: 0px;
 }
@@ -15,6 +15,7 @@ body {
 	height: 30px;
 	text-align: right;
 	background: #ffff;
+	font-size: 10pt;
 }
 
 .header ul{
