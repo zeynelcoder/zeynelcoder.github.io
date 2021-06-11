@@ -6,14 +6,15 @@ body {
 
 .container {
 	width: auto;
-	height: auto;
-	background: #ffff;
+	height: 500px;
+	background: #eeee;
 }
 
 .header {
 	width auto;
 	height: 30px;
 	text-align: right;
+	background: #ffff;
 }
 
 .header ul{
