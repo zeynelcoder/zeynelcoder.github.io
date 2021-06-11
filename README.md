@@ -1,1 +1,0 @@
-# zeynelabidinozdamar.github.io
