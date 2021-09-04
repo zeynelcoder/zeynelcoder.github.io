@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+  <title>Paranı Bil!</title>
+  <!-- HTML -->
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="user.write()">
+  <table border="0" id="table">
+<tr>
+	<td id="money-text">Para: <span id="money-box"></span>₺</td>
+	<td></td>
+</tr>
+<tr>
+	<td>
+		<input type="number" id="box" />
+		</td>
+	<td>
+		<button type="submit" onclick="user.add()">Ekle +</button>
+						<button type="submit" onclick="user.interest()">Çıkar -</button>
+		</td>
+		<tr>
+		<tr>
+		<td><h4>İşlem Geçmişi;</h4></td>
+		<td></td>
+		</tr>
+		<tr>
+			<td><span id="date-box"></span></td>
+			<td><button type="submit" onclick="user.storage()">Kaydet</button>
+			<button type="submit" onclick="user.write()">Yükle</button>
+			</td>
+		</tr>
+  </table>
+  <!-- Project -->
+  <script src="main.js"></script>
+</body>
+</html>
