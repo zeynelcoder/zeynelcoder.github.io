@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2? family= Antonio:wght@100 & display=swap');
+
+body {
+ font-size: 9pt; 
+ margin: 0;
+ margin-top: 20%;
+ rotate: 90%;
+}
+
+#cover{
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+#saat {
+	font-size: 50pt;
+	font-family: monospace;
+	display: block;
+}
+
+#dakika {
+	font-size: 70pt;
+	font-family: monospace;
+}
+#saniye {
+	font-size: 50pt;
+	font-family: monospace;
+}
+
+#guns {
+	font-size: 9pt;
+	color: red;
+}
+
+#ay {
+	color: red;
+}
+
+
+
