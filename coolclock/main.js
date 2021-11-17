@@ -48,7 +48,7 @@ function selup(){
 		break;
 		case 2:
 			document.getElementById("body").style.backgroundColor = colors[3];
-		document.getElementById("body").style.color = colors[4];
+		document.getElementById("body").style.color = colors[1];
 		break;
 		case 3:
 			document.getElementById("body").style.backgroundColor = colors[0];
