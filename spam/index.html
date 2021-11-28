@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spamer Pro v.1</title>
+<style type="text/css" media="all">
+	body {
+		font-size: 9pt;
+		margin: 10px;
+	}
+	#area {
+		width: 99%;
+	}
+</style>
+</head>
+<body>
+<h3>Spamer Pro</h3>
+<p>Spamlanacak Metni Girin</p>
+<input type="text" id="inp-text"/>
+<p>Spamlama Sayısını Girin (Önerilen: 10-50)</p>
+<input type="number" id="inp-num"/>
+<button type="submit" onclick="yaz()">Tamam</button>
+<p>Çıktı;</p>
+<textarea id="area" rows="8" cols="40"></textarea>
+<b>created by <a href="http://zeynel.tk">zeynel abidin özdamar</a></b>
+  <script>
+  function yaz(){
+var inpText=document.getElementById("inp-text").value;
+var inpNum=document.getElementById("inp-num").value;
+  	for(var i=1;i<=inpNum;i++)
+	{
+		document.getElementById("area").innerHTML += inpText+" ";
+	}
+  }
+  </script>
+</body>
+</html>
