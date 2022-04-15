@@ -126,3 +126,10 @@ a{
 	background: url("./img/ads2.png");
 	display: none;
 }
+
+@media screen and (max-width: 768px) {
+body {font-size: 15pt;
+	
+	
+	}
+}
