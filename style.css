@@ -1,5 +1,5 @@
 body {
- font-size: 8pt;
+ font-size: 10pt;
  margin: 0px;
  padding: 0px;
  background: #1B1A17;
@@ -61,6 +61,7 @@ hr{
 	margin: 10px auto;
 	padding: 7px;
 	text-align: center;
+	
 }
 
 #projects{
