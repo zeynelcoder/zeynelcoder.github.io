@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zeynel Abidin Özdamar</title>
+  <link rel="stylesheet" href="style.css">
+  <style type="text/css" media="all">
+  	.text{
+  		text-align: center;
+  		width: 85%;
+  		display: block;
+  		margin: auto;
+  		transition: all 1.5s;
+  		transform: scale(1);
+  	}
+  	
+  	.text:hover{
+  		font-size: 13.5pt;
+  	}
+  </style>
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<body id="body">
+  
+ <div id="menu" onclick="menuop()"><span class="material-symbols-outlined">
+menu
+</span></div>
+ <div id="menubox">
+ 	
+ 	<div onclick="menuof()" id="menuclose">✖️</div>
+ 	
+ 	<h2>Menü</h2><hr /><br />
+ 	<a class="menua" href="/">⚜️ Anasayfa</a>
+ 	<a class="menua" href="hakkimda.html">⚜️ Hakkımda</a>
+ 	<a class="menua" href="iletisim.html">⚜️ İletişim</a>
+ 	
+ </div>
+ 
+ 
+ <div id="pp"></div>
+ <h2 id="name">🌠 Zeynel Abidin Özdamar 🌠</h2>
+<hr />
+
+<h2>Hakkımda</h2>
+ 
+ <b class="text">Merhaba👋🏻 ben, Zeynel Abidin Özdamar. <span id="yas"></span> yaşındayım. Web site tasarımı🖥️, logo tasarım💎, video edit🎬, mobil fotoğrafçılık📸 gibi işler yaptım.</b>
+ <br />
+ <hr />
+ <b class="email">ozdamarzeynel@gmail.com</b>
+ 
+ 
+ 
+<script>
+	var my = 2007;
+	var year = new Date();
+	var age = year.getFullYear()-my;
+	document.getElementById('yas').innerHTML=age;
+</script>
+  <script src="main.js"></script>
+</body>
+</html>
