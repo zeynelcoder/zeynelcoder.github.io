@@ -109,7 +109,7 @@ h2{
 
 #menubox{
 	width: 90%;
-	height: 45%;
+	height: auto;
 	background: #222325;
 	border-radius: 7px;
 	border: 1px solid white;
