@@ -1,0 +1,56 @@
+body {
+ font-size: 13pt;
+ margin: 0;
+ padding: 0;
+ background: black;
+ font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+
+#bg{
+	width: auto;
+	height: 800px;
+	display: block;
+	background: url("./img/bg.png");
+	background-size:auto 800px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: right;
+	padding: 0;
+	margin: 0;
+	color: white;
+
+}
+
+#title1{
+	margin: auto;
+	display: block;
+	text-align: center;
+	margin-top: 20%;
+}
+
+#alttitle1{
+	text-align: center;
+}
+
+.sos{
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	border: 0px solid white;
+	box-sizing: border-box;
+	margin: 0 15px;
+	border-radius: 50px;
+	background: none;
+}
+
+.sos img{
+	width: 50px;
+	height: 50px;
+	border-radius: 15px;
+}
+
+#sosbox{
+	display: block;
+	width: fit-content;
+	margin: 20px auto;
+}
