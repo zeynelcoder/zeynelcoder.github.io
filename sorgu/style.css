@@ -1,0 +1,32 @@
+body {
+ font-size: 13pt;
+ background: #000000;
+ color: green;
+}
+
+hr{
+	border-color: green;
+}
+
+input{
+	background: black;
+	color: green;
+	border: 1px solid green;
+	outline: none;
+	margin: auto;
+	width: 150px;
+}
+
+button{
+		background: black;
+		color: green;
+		border: 1px solid green;
+		padding: 7px;
+}
+
+textarea{
+	background: black;
+	color: green;
+ border: 1px solid green;
+ outline: none;
+}
