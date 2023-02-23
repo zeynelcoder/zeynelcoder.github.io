@@ -1,15 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Roboto+Mono:wght@500&family=Roboto:wght@100&display=swap');
 body {
  font-size: 15pt;
  background: white;
  padding: 0;
  margin: 0;
+ font-family: 'Roboto Mono', monospace
 }
 
 #box{
 	border: 1px solid black;
 	border-radius: 3px;
-	height: 250px;
-	width: 250px;
+	height: 350px;
+	width: 350px;
 	margin: 20px auto;
 	background: #2D9228;
 }
@@ -26,11 +28,12 @@ h3{
 	text-align: center;
 	width: 100%;
 	display: block;
-	background-color: #C6C6C6;
+	background-color: #252525;
 	position: fixed;
 	padding: 10px;
 	top: 0px;
 	margin-top: 0;
+	color: white;
 }
 
 #b{
