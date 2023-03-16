@@ -1,0 +1,4 @@
+
+function reklam(){
+    alert("sjchduchdjcn");
+}
