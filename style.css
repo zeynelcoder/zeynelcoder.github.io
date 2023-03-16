@@ -11,7 +11,7 @@ display: block;
 width: 550px;
 height: 200px;
 margin: auto;
-background: url("/img/reklams.gif");
+background: url("./img/reklams.gif");
 background-size: 550px 200px;
 border-radius: 7px;
 }
