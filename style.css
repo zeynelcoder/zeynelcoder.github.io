@@ -26,7 +26,7 @@ display: block;
 text-align: center;
 animation: scale 2s step-end linear;
 transition: 0.3s ease-in-out;
-    margin-top -20px;
+top: 20px;
 }
 
 #alertbox:hover{
