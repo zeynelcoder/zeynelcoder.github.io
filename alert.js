@@ -5,7 +5,7 @@ const messages = [
 "Hoşgeldinnn!",
 "HTML developerlar şuan ne yapıyor?",
 "Neden böyle bi kutu var bilmiyorum😇",
-"Tasarladığım ürünler için aşağıya kaydır!",
+"Tasarladığım ürünler için yukarı kaydır! ⬆️⬆️⬆️",
 "Blog sayfamda büyüleyici şeyler var! Bi göz at derim.",
 ];
 
