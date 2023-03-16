@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-site-verification" content="NM4RzK14ef1O_kBrcZG_gvMEm2s5xPpjhrDvZxBMXUk" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +13,10 @@
   <title>Home - Zeynel Abidin Özdamar</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="yazdir()">
  
+  <div id="alertbox" onclick="tik()"><button id="alertbt">X</button> Kendi tasarladığım ürünlere gözatmak ister misin? </div>
+
 <h3>>> zeynel.tk/index.html</h3>
     <div id="main">
 <img id="pp" src="/img/pp.png" alt="zeynel abidin özdamar" title="Zeynel Abidin Özdamar - Ve evet fotoğrafdaki benim"></img>
@@ -61,8 +62,11 @@
 
 
 <hr>
+
 <b id="etiket"><a href="mailto:ozdamarzeynel@gmail.com">ozdamarzeynel@gmail.com</a> </b>
 <b id="etiket">zeynel.tk®</b>
+<div id="reklam"><a href="https://www.instagram.com/dark_noise_tshirts/" target="_blank" id="reklamlink"></a></div>
+<hr>
 <b id="etiket">~ 2023 ~</b>
     </div>
 
@@ -70,7 +74,8 @@
 
 
 
-
-  <script src="main.js"></script>
+<script src="alert.js"></script>
+<script src="main.js"></script>
+<script src="load.js"></script>
 </body>
 </html>
