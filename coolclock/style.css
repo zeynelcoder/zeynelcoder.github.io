@@ -2,81 +2,19 @@
 
 body {
  font-size: 11pt; 
- margin: auto;
+ user-select: none;
 
 }
 
 #cover{
- border: 2px solid black;
- height: 10%;
- width: 60%;
- margin-top: 15%;
-	
+ height: 100%;
+ width: 100%;
+ margin: 20% auto;
  text-align: center;
  box-sizing: border-box;
- padding: 15px;
- border-radius: 7px;
-}
+ padding: 100px;
+ border-radius: 5px;
 
-#saat {
-	font-size: 60pt;
-	font-family: monospace;
-	display: block;
-}
-
-#dakika {
-	font-size: 80pt;
-	font-family: monospace;
-}
-#saniye {
-	font-size: 60pt;
-	font-family: monospace;
-}
-
-#guns {
-	font-size: 9pt;
-	color: red;
-}
-
-#ay {
-	color: red;
-}
-
-h1{
-	text-align: center;
-}
-
-
-
-@import url('https://fonts.googleapis.com/css2? family= Antonio:wght@100 & display=swap');
-
-body {
-
- font-size: 11pt; 
-
- margin: auto;
-
-}
-
-#cover{
-
- border: 2px solid black;
-
- height: 10%;
-
- width: 60%;
-
- margin-top: 15%;
-
- margin: auto;
-
- text-align: center;
-
- box-sizing: border-box;
-
- padding: 15px;
-
- border-radius: 7px;
 
 }
 
@@ -125,3 +63,16 @@ h1{
 	text-align: center;
 
 }
+
+img{
+	width: 50px;
+	height: 50px;
+	display: block;
+	background-size: 60px;
+	position: fixed;
+	border: 0px solid black;
+	right: 6px;
+	bottom: 6px;
+	border-radius: 7px;
+}
+
