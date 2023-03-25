@@ -3,7 +3,7 @@
 body {
  font-size: 11pt; 
  user-select: none;
-
+ font-family: monospace;
 }
 
 #cover{
@@ -74,5 +74,13 @@ img{
 	right: 6px;
 	bottom: 6px;
 	border-radius: 7px;
+}
+
+#alt-text{
+	text-align: center;
+	display: block;
+	margin-top: -20%;
+	color: none;
+	font-family: monospace;
 }
 
