@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Generator Pro</title>
+</head>
+<style>
+    body{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: black;
+    }
+    #canvas{
+        width: 80%;
+        min-width: 400px;
+        height: 500px;
+        background-color: black;
+        margin: 10px auto;
+        padding-top: 1%;
+        box-sizing: border-box;
+    }
+    #top{
+        width: fit-content;
+        min-width: 300px;
+        background-color: rgb(0, 0, 0);
+        height: 70px;
+        margin: 150px auto;
+        text-align: center;
+        font-size: 60pt;
+        padding: 20px;
+        color: white;
+    }
+    #bottom{
+        width: fit-content;
+        min-width: 200px;
+        background-color: rgb(255, 119, 0);
+        height: 100px;
+        margin: -135px auto;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        font-size: 60pt;
+        padding: 10px;
+        border-radius: 7px;
+    }
+    #incover{
+        width: 300px;
+        height: fit-content;
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+    }
+</style>
+<body>
+    
+
+<div id="canvas">
+
+<div id="top">Max.</div>
+<div id="bottom">10 Karakter</div>
+
+</div>
+
+
+
+<div id="incover">
+    <input type="text" id="top-i" value="Max."><br>
+    <input type="text" id="bottom-i" value="10 Karakter"><br>
+    <button id="sub" onclick="submit()">Submit</button>
+</div>
+
+<script>
+
+var top=document.getElementById("top");
+var bottom=document.getElementById("bottom");
+var topi=document.getElementById("top-i");
+var bottomi=document.getElementById("bottom-i");
+var sub=document.getElementById("sub");
+
+function submit(){
+console.log(topi.value)
+console.log(bottomi.value)
+
+//
+
+document.getElementById("top").innerText= topi.value;
+document.getElementById("bottom").innerText= bottomi.value;
+}
+
+
+</script>
+</body>
+</html>
