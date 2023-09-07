@@ -1,5 +1,0 @@
-.git/
-node_modules/
-p/scripts/bcrypt.min.js
-p/scripts/vendor/
-vendor/

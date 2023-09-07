@@ -1,5 +1,0 @@
-ignored:
-  # ignore apt version pinning
-  - DL3008
-  # ignore apk version pinning
-  - DL3018
