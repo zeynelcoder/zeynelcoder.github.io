@@ -1,0 +1,24 @@
+/bin/
+/node_modules/
+/vendor/
+/data.back/
+/constants.local.php
+
+.vscode/
+
+# Temp files
+*~
+*.bak
+*.backup
+*.cache
+\#*
+.\#*
+*\#
+*.swp
+*.swap
+*.sav
+*.save
+*.autosav
+*.autosave
+*.sass-cache
+sass.sh
