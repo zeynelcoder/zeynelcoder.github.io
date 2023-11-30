@@ -1,0 +1,134 @@
+body{
+    background-color: rgb(18, 18, 18);
+    color: rgba(255, 255, 255, 0.541);
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 0;
+}
+
+#title{
+    padding: 0;
+    margin: 0;
+    font-size: xxx-large;
+    font-style: bold;
+}
+#infobox{
+    background-color: rgba(19, 19, 19, 0);
+    width: 70%;
+    position: absolute;
+    bottom: 10%;
+    top: 65%;
+    left: 15%;
+}
+
+.stat{
+    float: left;
+    margin-right: 7px;
+    margin-top: 6px;
+}
+
+.stat img {
+    width: 27px;
+    display: block;
+    margin-top: -3px;
+    animation: scale 2s step-end linear;
+    transition: 0.1s ease-in-out;
+}
+
+.stat img:hover{
+    transform: scale(1.2);
+    opacity: 0.5;
+}
+
+#pp{
+    width: 364px;
+    height: 364px;
+    position: absolute;
+    right: 15%;
+    top: 10%;
+    background-image: url("img/img-circle.png");
+    background-size: 364px 364px;
+    border-radius: 364px;
+    animation: scale 2s step-end linear;
+    transition: 0.1s ease-in-out;
+    z-index: 1;
+}
+
+#pp:hover{
+    transform: scale(1.1); 
+}
+
+#cvbox{
+    width: 50%;
+    text-align: right;
+    position: absolute;
+    top: 85%;
+    right: 15%;
+    padding: 0;
+}
+
+#conbox{
+    width: 70%;
+    text-align: left;
+    position: absolute;
+    top: 110%;
+    left: 15%;
+    padding: 0;
+}
+
+#letsbox{
+    width: 70%;
+    text-align: right;
+    position: absolute;
+    top: 130%;
+    right: 15%;
+    padding: 0;
+}
+
+a{
+    color: rgba(255, 255, 255, 0.541);
+    text-decoration: none;
+    font-size: larger;
+}
+
+a:hover{
+    opacity: 0.5;
+}
+
+#altbox{
+    display: block;
+    position: absolute;
+    top: 150%;
+    left: 15%;
+}
+
+.btn{
+    background-color: rgba(19, 19, 19, 0);
+    color: rgba(255, 255, 255, 0.541);
+    border: 2px solid rgba(255, 255, 255, 0.541);
+    padding: 10px;
+    border-radius: 7px;
+    font-family: 'Roboto Condensed', sans-serif;
+    animation: rotate 2s step-end linear;
+    transition: 0.1s ease-in-out;
+}
+
+.btn:hover{
+    color: rgba(255, 255 , 255, 0.11);
+    border-color: rgba(255, 255, 255, 0.541);
+    transform: scale(1.1); 
+    border-radius: 0px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #pp{
+        width: 270px;
+        height: 270px;
+        position: static;
+        margin: auto;
+        margin-top: 30%;
+        background-image: url("img/img-circle.png");
+        background-size: 270px 270px;
+        border-radius: 270px;
+    }
+  }
