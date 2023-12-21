@@ -1,0 +1,101 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-size: x-large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url("arkaplan333.png");
+    background-size: 100%;
+    background-position: 0px 70px;
+}
+
+#top{
+    width: 100%;
+    height: 70px;
+    background-image: url("üst.png");
+    background-size: 100%;
+    position: fixed;
+}
+
+h1{
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 0%;
+
+}
+
+h2{
+    text-align: center;
+    margin-top: 7%;
+    margin-bottom: -1%;
+
+}
+
+p{
+    padding:2% 23%;
+    text-align: center;
+    font-style: italic;
+
+}
+
+#ad-left{
+    display: block;
+    background-image: url("im.png");
+    width: 12%;
+    min-width: 275px;
+    height: 550px;
+    position: absolute;
+    margin-left: 2%;
+    margin-top: 50px;
+    border: 3px solid black;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+#ad-left2{
+    display: block;
+    background-image: url("im.png");
+    width: 12%;
+    min-width: 275px;
+    height: 550px;
+    position: absolute;
+    margin-left: 2%;
+    margin-top: 1100px;
+    border: 3px solid black;
+    border-radius: 3px;
+    z-index: 3;
+}
+
+#ad-right{
+    display: block;
+    background-image: url("imgif.gif");
+    width: 12%;
+    min-width: 275px;
+    height: 550px;
+    position: absolute;
+    margin-top: 550px;
+    right: 2%;
+    border: 3px solid black;
+    border-radius: 3px;
+    z-index: 4;
+}
+
+#alertbox{
+    width: 675px;
+    height: 450px;
+    padding: 7px;
+    background-image: url("pop-up.gif");
+    background-size: 100% 100%;
+    position: fixed;
+    z-index: 100;
+    right: 25%;
+    top: 20%;
+    border-radius: 7px;
+    display: none;
+}
+
+#off-btn{
+    position: fixed;
+    right: 25.5%;
+    top: 21%;
+    padding: 3.5px;
+}
