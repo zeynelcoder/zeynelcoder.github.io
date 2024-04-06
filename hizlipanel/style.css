@@ -2,6 +2,9 @@ body{
     background-color: rgb(23, 23, 23);
     padding: 0;
     margin: 0;
+    font-family:"Bebas Neue", sans-serif;
+    background-image: url(https://i.makeagif.com/media/8-11-2018/jET9FZ.gif);
+    background-size: 100% 400%;
 }
 
 img{
@@ -13,6 +16,17 @@ img{
 li{
     text-decoration: none;
     list-style: none;
+    display: block;
+    border: 1px solid black;
+    width: min-content;
+    float: left;
+    margin: 0 0 0 15px;
+    text-align: center;
+    padding: 5px;
+}
+
+#aa{
+    float: right;
 }
 
 a{
@@ -24,9 +38,14 @@ a{
 #saat{
     color: rgb(0, 131, 11);
     margin: 4%;
+    text-align: center;
+    font-size: xxx-large;
 }
 
-#kurlist{
+#dolar{
     display: block;
-    margin: 20px;
+    margin: 250px 20px;
+    background-color: brown;
+    position: absolute;
+    bottom: 1px;
 }
