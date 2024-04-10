@@ -59,6 +59,7 @@ a img:hover{
 
 #dolar{
     display: block;
+    margin: 0px;
     background-color: brown;
     position: absolute;
     bottom: 1px;
