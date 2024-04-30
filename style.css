@@ -79,7 +79,7 @@ body{
     width: 70%;
     text-align: right;
     position: absolute;
-    top: 130%;
+    top: 160%;
     right: 15%;
     padding: 0;
 }
@@ -119,6 +119,48 @@ a:hover{
     border-radius: 0px;
 }
 
+.blogimg{
+    width: 500px;
+    margin: auto;
+    display: block;
+    position: absolute;
+    border: 2px solid gray;
+    border-radius: 5px;
+    animation: rotate 2s step-end linear;
+    transition: 0.3s ease-in-out;
+}
+
+.blogimg:hover{
+    transform: scale(1.1); 
+}
+
+#blogtitle{
+    position: absolute;
+    top: 400%;
+    display: block;
+}
+
+#bloglink{
+    position: absolute;
+    top: 445%;
+    display: block;
+}
+
+.isyap{
+    width: 10%;
+    border-radius: 7px;
+    animation: rotate 2s step-end linear;
+    transition: 0.1s ease-in-out;
+}
+
+.isyap:hover{
+    transform: scale(1.1); 
+}
+
+#et{
+    text-align: center;
+    display: block;
+}
 
 @media only screen and (max-width: 600px) {
     #pp{
@@ -126,9 +168,57 @@ a:hover{
         height: 270px;
         position: static;
         margin: auto;
-        margin-top: 30%;
+        margin-top: 20%;
         background-image: url("img/img-circle.png");
         background-size: 270px 270px;
         border-radius: 270px;
+    }
+    #infobox{
+        left: 5%;
+        top: 60%;
+    }
+    #letsbox{
+        width: 70%;
+        text-align: right;
+        position: absolute;
+        top: 160%;
+        right: 5%;
+        padding: 0;
+    }
+    .blogimg{
+        width: 100%;
+        margin: auto;
+        position: absolute;
+    }
+    
+    #blogtitle{
+        position: absolute;
+        top: 280%;
+        display: block;
+    }
+    
+    #bloglink{
+        position: absolute;
+        top: 360%;
+    }
+    #conbox{
+        width: 70%;
+        text-align: left;
+        position: absolute;
+        top: 110%;
+        left: 5%;
+        padding: 0;
+    }
+    #cvbox{
+        width: 50%;
+        text-align: right;
+        position: absolute;
+        top: 85%;
+        right: 5%;
+        padding: 0;
+    }
+    .isyap{
+        width: 20%;
+        border-radius: 7px;
     }
   }
