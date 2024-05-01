@@ -76,7 +76,7 @@ body{
 }
 
 #letsbox{
-    width: 70%;
+    width: 40%;
     text-align: right;
     position: absolute;
     top: 160%;
@@ -142,15 +142,17 @@ a:hover{
 
 #bloglink{
     position: absolute;
-    top: 445%;
+    top: 460%;
     display: block;
 }
 
 .isyap{
-    width: 10%;
+    width: 15%;
     border-radius: 7px;
     animation: rotate 2s step-end linear;
     transition: 0.1s ease-in-out;
+    margin-right: 7px;
+    
 }
 
 .isyap:hover{
@@ -158,8 +160,10 @@ a:hover{
 }
 
 #et{
-    text-align: center;
+    text-align: left;
     display: block;
+    position: absolute;
+    width: fit-content;
 }
 
 @media only screen and (max-width: 600px) {
@@ -174,8 +178,19 @@ a:hover{
         border-radius: 270px;
     }
     #infobox{
+        width: fit-content;
+        height: fit-content;
         left: 5%;
         top: 60%;
+        
+    }
+    #cvbox{
+        width: 50%;
+        text-align: right;
+        position: absolute;
+        top: 82%;
+        right: 5%;
+        padding: 0;
     }
     #letsbox{
         width: 70%;
@@ -192,14 +207,18 @@ a:hover{
     }
     
     #blogtitle{
+        width: fit-content;
+        height: fit-content;
         position: absolute;
-        top: 280%;
+        top: 281%;
         display: block;
     }
     
     #bloglink{
+        width: fit-content;
+        height: fit-content;
         position: absolute;
-        top: 360%;
+        top: 420%;
     }
     #conbox{
         width: 70%;
@@ -209,14 +228,7 @@ a:hover{
         left: 5%;
         padding: 0;
     }
-    #cvbox{
-        width: 50%;
-        text-align: right;
-        position: absolute;
-        top: 85%;
-        right: 5%;
-        padding: 0;
-    }
+    
     .isyap{
         width: 20%;
         border-radius: 7px;
