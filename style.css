@@ -166,6 +166,17 @@ a:hover{
     width: fit-content;
 }
 
+#dortyuzdort{
+    text-align: center;
+    font-size: 55pt;
+}
+
+#dort{
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+
 @media only screen and (max-width: 600px) {
     #pp{
         width: 270px;
