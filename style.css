@@ -61,7 +61,7 @@ body{
     width: 50%;
     text-align: right;
     position: absolute;
-    top: 85%;
+    top: 80%;
     right: 15%;
     padding: 0;
 }
@@ -70,7 +70,7 @@ body{
     width: 70%;
     text-align: left;
     position: absolute;
-    top: 110%;
+    top: 100%;
     left: 15%;
     padding: 0;
 }
@@ -79,7 +79,7 @@ body{
     width: 40%;
     text-align: right;
     position: absolute;
-    top: 160%;
+    top: 150%;
     right: 15%;
     padding: 0;
 }
@@ -196,7 +196,7 @@ a:hover{
         width: 70%;
         text-align: right;
         position: absolute;
-        top: 160%;
+        top: 155%;
         right: 5%;
         padding: 0;
     }
@@ -207,18 +207,19 @@ a:hover{
     }
     
     #blogtitle{
-        width: fit-content;
+        width: 125%;
         height: fit-content;
         position: absolute;
         top: 281%;
         display: block;
+        border: 1px solid white;
     }
     
     #bloglink{
         width: fit-content;
         height: fit-content;
         position: absolute;
-        top: 420%;
+        top: 345%;
     }
     #conbox{
         width: 70%;
