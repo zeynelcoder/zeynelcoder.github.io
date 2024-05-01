@@ -79,7 +79,7 @@ body{
     width: 40%;
     text-align: right;
     position: absolute;
-    top: 150%;
+    top: 160%;
     right: 15%;
     padding: 0;
 }
@@ -207,19 +207,18 @@ a:hover{
     }
     
     #blogtitle{
-        width: 125%;
+        width: fit-content;
         height: fit-content;
         position: absolute;
         top: 281%;
         display: block;
-        border: 1px solid white;
     }
     
     #bloglink{
         width: fit-content;
         height: fit-content;
         position: absolute;
-        top: 345%;
+        top: 370%;
     }
     #conbox{
         width: 70%;
