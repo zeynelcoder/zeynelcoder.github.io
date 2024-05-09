@@ -1,0 +1,92 @@
+body{
+    background-color: rgb(17, 17, 17);
+    color: aqua;
+    padding-top: 50px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+#game-machine{
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin: 30px auto;
+    padding: 5px;
+    border: 1px solid aqua;
+}
+
+#slot-bars{
+    width: max-content;
+    display: block;
+    margin: 60px auto;
+    padding: 5px;
+    
+}
+
+.bar{
+    display: block;
+    padding: 25px;
+    border: 1px solid aqua;
+    float: left;
+    margin: 5px;
+    font-size: xx-large;
+    border-radius: 4px;
+}
+
+#bet-input-box{
+    width: max-content;
+    display: block;
+    margin: 30px auto;
+
+}
+
+#bet-inp{
+    display: block;
+    padding: 9px;
+    outline: none;
+}
+
+#btn{
+    width: 60px;
+    display: block;
+    margin: 10px auto;
+    padding: 7px;
+    background-color: rgb(17, 17, 17);
+    border: 1px solid aqua;
+    border-radius: 4px;
+    color: aqua;
+    font-family:'Courier New', Courier, monospace;
+}
+
+#lucky-number{
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+
+#bet-box{
+    display: block;
+    margin: auto;
+    width: fit-content;
+}
+
+#bet{
+width: fit-content;
+border: 1px solid aqua;
+padding: 7px;
+margin: 0 15px 0 0;
+}
+
+#case{
+    width: fit-content;
+    border: 1px solid aqua;
+    padding: 7px;
+}
+
+#alert{
+    width: fit-content;
+    border: 1px solid aqua;
+    padding: 7px;
+    margin: auto;
+    text-align: center;
+    display: none;
+}
