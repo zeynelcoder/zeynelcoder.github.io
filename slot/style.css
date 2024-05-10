@@ -1,7 +1,7 @@
 body{
     background-color: rgb(17, 17, 17);
     color: aqua;
-    padding-top: 50px;
+    padding-top: 20px;
     font-family:'Courier New', Courier, monospace;
 }
 
@@ -131,6 +131,10 @@ border-radius: 4px;
     background-color: #171717;
     border: 1px solid aqua;
     position: fixed;
+}
+
+#set-btn{
+    margin-left: 10px;
 }
 
 .set-btns{
