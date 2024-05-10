@@ -133,6 +133,10 @@ border-radius: 4px;
     position: fixed;
 }
 
+#set-btn{
+    margin-left: 10px;
+}
+
 .set-btns{
     padding: 7px;
     background-color: rgb(17, 17, 17);
@@ -156,7 +160,7 @@ border-radius: 4px;
         border: 1px solid aqua;
         position: absolute;
         right: 0%;
-        bottom: 20px;
+        bottom: 0px;
         text-align: center;
         box-sizing: border-box;
         padding-top: 40px;
