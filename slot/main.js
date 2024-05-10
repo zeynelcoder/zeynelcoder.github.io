@@ -4,6 +4,7 @@ var ply=document.getElementById("btn");
 var inp=5;
 var alertbox=document.getElementById("alert");
 var casebox=document.getElementById("case");
+var set=document.getElementById("settings");
 var playercase=50;
 
 casebox.innerText = playercase+"$";
@@ -26,7 +27,7 @@ if(playercase>0){
     sb2.style.borderColor="aqua";
     sb3.style.borderColor="aqua";
 
-    var audio = new Audio('sounds/handle.mp3');
+    var audio = new Audio('sounds/handle.wav');
     audio.play();
 
 /*
@@ -49,7 +50,7 @@ const b1= Math.floor(Math.random() * 10);
 const b2= Math.floor(Math.random() * 10);
 const b3= Math.floor(Math.random() * 10);
     // write lucky numbers on screen
-luNumText.innerText = "Şanslı Sayılar : "+b1+"-"+b2+"-"+b3;
+luNumText.innerText = "Şanslı Sayılar : "+b1+" - "+b2+" - "+b3;
     // write lucky numbers on console
 console.log("Şanslı Sayı = "+b1+"-"+b2+"-"+b3)
 
@@ -58,7 +59,7 @@ const sn1= Math.floor(Math.random() * 10);
 const sn2= Math.floor(Math.random() * 10);
 const sn3= Math.floor(Math.random() * 10);
     // write slot numbers on console
-    console.log("Slottaki Sayı: "+sn1+"-"+sn2+"-"+sn3)
+    console.log("Slottaki Sayı: "+sn1+" - "+sn2+" - "+sn3)
 
     // write slot numbers on screen 
     sb1.innerText = sn1;
@@ -152,4 +153,26 @@ function write(){
     betText.innerText = "Bahis : " + inp + "$";
 
     casebox.innerText = "Kasa : " + playercase + "$";
+}
+var x=1;
+
+function setting(){
+    
+    if(x==1){
+       set.style.display="block"; 
+       console.log("open");
+       console.log("x= "+x);
+       x=2;
+    }
+    else{
+       set.style.display="none";  
+       console.log("close");
+       console.log("x= "+x);
+       x=1;
+    }
+
+
+        
+
+    
 }

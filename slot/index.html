@@ -3,22 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slot Game</title>
+    <title>LNS - Lucky Number Slots Game 2024</title>
+    <link rel="icon" type="image/x-icon" href="img/seven-removebg-preview.png"></link>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Jersey+10&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="write()">
-    
-    <b id="lucky-number">?-?-?</b>
+    <button id="set-btn" class="set-btns" onclick="setting()">⚙️</button>
+    <div id="settings">
+        <h2>/settings</h2>
+
+        <b>Text Color : 
+            <button class="set-btns">Aqua</button>
+            <button class="set-btns">Yellow</button>
+            <button class="set-btns">White</button>
+        </b>
+<p></p>
+        <b>Background Color : 
+            <button class="set-btns">Dark</button>
+            <button class="set-btns">White</button>
+        </b>
+<p></p>
+    <b>Game Data : 
+        <button class="set-btns">Save</button>
+        <button class="set-btns">Delete/Restart</button>
+    </b>
+    <p></p>
+    <b>Ads : 
+        <button class="set-btns">Close (for one)</button>
+    </b>
+    </div>
+
+
+    <b id="lucky-number">❓ - ❓ - ❓</b>
 <div id="game-machine">
     <div id="slot-bars">
-        <div id="slot-bar1" class="bar">1</div>
-        <div id="slot-bar2" class="bar">2</div>
-        <div id="slot-bar3" class="bar">3</div>
+        <b id="slot-bar1" class="bar">?</b>
+        <b id="slot-bar2" class="bar">?</b>
+        <b id="slot-bar3" class="bar">?</b>
     </div>
 </div>
+
+
 
 <div id="bet-box">
     <b id="bet">$</b>
@@ -27,12 +55,12 @@
 </div>
 
 <div id="bet-input-box" >
-<button id="btn" onclick="play()">Play</button>
+<button id="btn" onclick="play()">PLAY</button>
 
 </div>
 
 <div id="alert">Bu bir uyarı mesajıdır!</div>
-
+<a id="ad" href="https://zeynelcoder.github.io"></a>
 
 
 <script src="main.js"></script>
