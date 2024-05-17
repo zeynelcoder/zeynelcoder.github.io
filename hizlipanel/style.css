@@ -74,7 +74,7 @@ a img:hover{
     margin: 0px;
     background-color: brown;
     position: fixed;
-    bottom: 1px;
+    top: 1px;
 }
 
 hr{
