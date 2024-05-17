@@ -13,16 +13,23 @@ img{
     
 }
 
+#cont{
+    display: block;
+    width: 70%;
+    height: fit-content;
+    margin: auto;
+}
+
 li{
     text-decoration: none;
     list-style: none;
     display: block;
-
     width: min-content;
     float: left;
     margin: 0 0 0 10px;
     text-align: center;
     padding: 5px;
+    display: block;
 }
 
 #aa{
@@ -32,7 +39,11 @@ li{
 a{
     display: block;
     margin-top: 0px;
-    color: rgb(0, 131, 11);
+    color: rgb(5, 220, 23);
+    display: block;
+    width: 70px;
+    height: 90px;
+    font-size: 100%;
 }
 
 a:hover{
@@ -44,6 +55,7 @@ a img{
     display: block;
     width: 55px;
     height: 55px;
+    border-radius: 7px;
 }
 
 a img:hover{
@@ -51,7 +63,7 @@ a img:hover{
 }
 
 #saat{
-    color: rgb(0, 131, 11);
+    color: rgb(5, 220, 23);
     margin: 4%;
     text-align: center;
     font-size: 56pt;
@@ -61,7 +73,7 @@ a img:hover{
     display: block;
     margin: 0px;
     background-color: brown;
-    position: absolute;
+    position: fixed;
     bottom: 1px;
 }
 
