@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(18, 18, 18);
+    background-color: #0f0f0f;
     color: rgba(255, 255, 255, 0.541);
     font-family: 'Roboto Condensed', sans-serif;
     margin: 0;
@@ -45,9 +45,10 @@ body{
     position: absolute;
     right: 15%;
     top: 10%;
-    background-image: url("img/img-circle.png");
+    background-image: url("img/me-pp.png");
     background-size: 364px 364px;
     border-radius: 364px;
+    border: 4px solid grey;
     animation: scale 2s step-end linear;
     transition: 0.1s ease-in-out;
     z-index: 1;
@@ -184,7 +185,7 @@ a:hover{
         position: static;
         margin: auto;
         margin-top: 20%;
-        background-image: url("img/img-circle.png");
+        background-image: url("img/me-pp.png");
         background-size: 270px 270px;
         border-radius: 270px;
     }
