@@ -1,0 +1,65 @@
+body{
+    background-color: rgb(20, 20, 20);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 5%;
+}
+
+
+li{
+    text-decoration: none;
+    list-style: none;
+    display: block;
+    margin-top: 5px;
+}
+
+#menu{
+    display: block;
+    float: left;
+}
+
+#messageInput{
+    width: 74%;
+    background-color: rgb(20, 20, 20);
+    padding: 7px;
+    color: white;
+
+}
+
+#gonder{
+    width: fit-content;
+    background-color: rgb(20, 20, 20);
+    padding: 7px;
+    color: white;
+    height: 40px;
+    margin-bottom: -30px;
+}
+
+button{
+    width: fit-content;
+    background-color: rgb(20, 20, 20);
+    padding: 7px;
+    color: white;
+    border-radius: 7px;
+}
+
+input{
+    background-color: rgb(20, 20, 20);
+    padding: 7px;
+    color: white;
+    border-radius: 7px;
+    overflow: hidden;
+    outline: 0px;
+}
+
+#cıkıs{
+    display: block;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+}
+
+#paperplane{
+    width: 20px;
+    height: 20px;
+}
