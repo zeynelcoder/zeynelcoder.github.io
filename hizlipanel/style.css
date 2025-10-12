@@ -8,16 +8,19 @@ body{
 }
 
 img{
-    width: 40px;
+    width: 45px;
     margin: 5px;
     
 }
 
 #cont{
     display: block;
-    width: 70%;
+    width: 60%;
     height: fit-content;
     margin: auto;
+
+    z-index: 2;
+
 }
 
 li{
@@ -26,7 +29,7 @@ li{
     display: block;
     width: min-content;
     float: left;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 15px;
     text-align: center;
     padding: 5px;
     display: block;
@@ -75,6 +78,9 @@ a img:hover{
     background-color: brown;
     position: fixed;
     top: 1px;
+    border: 1px solid green;
+
+
 }
 
 hr{
