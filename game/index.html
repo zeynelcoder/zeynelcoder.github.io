@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <style>
+        body{
+
+    padding: 10px;
+    margin:0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;       
+    font-size: large;
+}
+
+    button {
+        padding: 10px;
+        font-size: large;
+    }
+
+    #factory-img{
+        width: 300px;
+    }
+    #worker-img{
+        width: 300px;
+    }
+
+    #mtb{
+        width: 250px;
+        height: 25px;
+        border: 1px solid black;
+        box-sizing: border-box;
+        margin: auto;
+        border-radius: 7px;
+       
+        
+    }
+    #mtbb{
+        width: 242x;
+        height: 23px;
+        text-align: left;
+        background-color: rgb(255, 255, 107);
+        transition: width 1s linear;
+        border-radius: 7px;
+        text-align: center;
+    }
+
+    #factory{
+        margin: auto;
+        width: fit-content;
+        text-align: center;
+    }
+
+    #game-control{
+        margin: auto;
+        width: fit-content;
+    }
+
+    #work-btn{
+        display: block;
+        margin: auto;
+        width: fit-content;
+    }
+    #statistics{
+        width: fit-content;
+        display: block;
+        margin: auto;
+        margin-top: 30px;
+    }
+    </style>
+</head>
+<body>
+ <a href="/next-page.html">↩ Anasayfa</a>   
+<h2>The Factory</h2>
+
+<div id="factory"><span id="fac-lev-txt">1.lv</span><img id="factory-img" src="g-img/factory.png">
+<div id="workers"><span id="wor-lev-txt">1.lv</span><img id="worker-img" src="g-img/worker.png"></div>
+<span id="money-text">100$</span>
+<span id="diamond-text"></span>
+ <div id="mtb"><div id="mtbb"><span id="making-time-text">60s</span></div></div><br>
+
+    
+</div>
+
+
+
+<div id="game-control">
+
+     <button id="work-btn" onclick="game.work()">Start</button><br>
+     <button id="level-up-factory" onclick="game.levelupfactory()">level up factory -<span id="flimittext">?</span>$</button>
+     <button id="level-up-workers" onclick="game.levelupworker()">level up workers -<span id="wlimittext">?</span>$</button>
+
+</div>
+
+
+<div id="statistics">
+    <b>Statistics</b>
+    <hr>
+    <table>
+        <tr><td>production speed :</td><td><span id="st-ps"></span>s</td></tr>
+        <tr><td>gain per second :</td><td><span id="st-gps"></span>$</td></tr>
+        <tr><td>earnings per production:</td><td><span id="st-eps"></span>$</td></tr>
+    </table>
+</div>
+
+
+
+
+
+
+
+<script src="main.js"></script>
+</body>
+</html>
