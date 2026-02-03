@@ -5,17 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zeynel Abidin Özdamar</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/img/ico.ico" type="image/x-icon"/>
 </head>
 <body>
 
-    <div id="bayrak"><img src="/img/ATATURK.png" alt=""></div>
+    <div id="loader"><p id="loader-text">●●●</p></div>
 
-<div id="pp"></div>
-
+    <div id="bayrak"><img src="/img/ATATURK.png" alt="" ></div>
+<div id="cube1"></div>
+<div id="cube2"></div>
+<div id="main-box">
+<div id="pp"></div> 
 <div id="box">
-<h2>Zeynel Abidin Özdamar</h2>
-<b>Web Tasarım - Freelancer</b>
+<h2>Zeynel Abidin Özdamar
+</h2>
+<b id="role">Web Designer - Mobile App Producer</b>
 </div>
+
+
 
 <div id="social-box">
     <a class="social-element" href="https://www.instagram.com/zeynel.coder/"><img src="/img/instagram.png" alt=""></a>
@@ -25,10 +32,21 @@
     <a class="social-element" href="mailto:ozdamarzeynel@gmail.com"><img src="/img/email.png" alt=""></a>
 </div>
 
-<b>@2025</b>
-
+<b>@2026</b>
+</div>
 
 <a href="next-page.html" id="more-btn">Devam Et</a>
 
+
+<script>
+  window.onload = function () {
+
+    setInterval(() => {
+     document.getElementById("loader").style.display = "none";
+      document.getElementById("content").style.display = "block";   
+    }, 1000);
+
+  };
+</script>
 </body>
 </html>

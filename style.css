@@ -1,9 +1,17 @@
 body{
-    background-color: rgb(231, 231, 231);
+    background-color: #0a0a0a ;
+    background-size: 500%;
+    background-position: center;
     padding: 0;
     margin:0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+    color: #e5e5e5;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+img{
+    z-index: 2;
 }
 
 b{
@@ -11,13 +19,36 @@ b{
     display: block;
 }
 
+#role{
+    color: #525252;
+    margin-top: -15px;
+    overflow: hidden;             
+    white-space: nowrap;           
+    border-right: 2px solid #fff;   
+    width: 0;
+    animation: typing 4s steps(40, end) forwards, blink 0.8s infinite;
+
+}
+
+@keyframes typing {
+  from { width: 0% }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  0% { border-color: transparent }
+  50% { border-color: white }
+  100% { border-color: transparent }
+}
+
 #pp{
     display: block;
-    margin: 60px auto;
+    margin: 10px auto;
     margin-bottom: 0;
     width: 250px;
     height: 250px;
-    border: 2px solid black;
+    border: 2px solid #e5e5e5;
+    box-shadow: 0 0 7px #e5e5e5;
     border-radius: 250px;
     background-image: url("/img/pp.jpg");
     background-size: 250px;
@@ -28,18 +59,25 @@ b{
 
 #pp:hover{
     transform: scale(1.1); 
+    border-radius: 12px;
 }
 
 #box{
     display: block;
-    margin: auto;
+    margin: 20px auto 0px auto;
     width: fit-content;
     text-align: center;
 }
 
+#box h2{
+   display: block;
+   margin-top: 30px;
+   text-align: center;
+}
+
 #social-box{
     display: block;
-    margin: 10px auto;
+    margin: 20px auto 10px auto;
     width: fit-content;
 
 }
@@ -47,6 +85,8 @@ b{
 .social-element img{
     width: 30px;
     height: 30px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
     margin-right: 7px;
     animation: scale 1s step-end linear;
     transition: 0.1s ease-in-out;
@@ -58,25 +98,109 @@ b{
 }
 
 #bayrak img{
-    width: 50px;
+    width: 100px;
     margin: 5px;
     border-radius: 3px;
 }
 
 #more-btn{
     width: fit-content;
-    background-color: black;
     color: white;
+    border: 2px solid #e5e5e5;
+    box-shadow: 0 0 7px #e5e5e5;
     text-decoration: none;
     text-align: center;
-    padding: 9px;
-    border-radius: 4px;
-    margin: 7% auto;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 4% auto;
     display: block;
-
+    transition: all 0.6s ease-in-out;
 }
 
 #more-btn:hover{
     background-color: rgb(60, 60, 60);
+    font-weight: 600;
 }
 
+
+#main-box{
+    width: fit-content;
+    background-color: #0a0a0a ;
+    margin: auto;
+    display: block;
+    padding: 20px;
+    border: 2px solid #e5e5e5;
+    border-radius: 10px;
+    box-shadow: 0 0 7px #e5e5e5;
+}
+
+#cube1{
+    width: 250px;
+    height: 250px;
+    border-radius: 250px;
+    filter: blur(90px);
+    background-color: #525252;
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    transition: transform 1.2s linear;
+    animation: transform 8s infinite;
+}
+
+@keyframes transform {
+  0% { scale: 1.0; }
+  50% { scale: 2; }
+  100% { scale: 1.0; }
+}
+
+#cube2{
+    width: 250px;
+    height: 250px;
+    border-radius: 250px;
+    filter: blur(90px);
+    background-color: #525252;
+    position: absolute;
+    top: -125px;
+    right: -125px;
+    transition: transform 1.2s linear;
+    animation: cube2t 8s infinite;
+}
+
+#loader{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #0a0a0a;
+    position: fixed;
+    text-align: center;
+    padding-top: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: #e5e5e5;
+    z-index: 9999;
+}
+
+#loader-text{
+    position: fixed;
+    top: 50%;
+    left: 49%;
+    text-align: center;
+}
+
+@keyframes cube2t {
+  0% { scale: 2; }
+  50% { scale: 1; }
+  100% { scale: 2; }
+}
+
+@media only screen and (max-width: 400px) {
+    #cube1, #cube2{
+        display: none;
+    }
+
+    #main-box{
+        margin-top: 30px;
+    }
+}
