@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <h1>reader</h1>
+    <div id="reader" style="width:300px"></div>
+    <script>
+function onScanSuccess(decodedText, decodedResult) {
+    console.log("QR bulundu:", decodedText);
+
+    // QR içeriğine yönlendir
+    window.location.href = decodedText;
+}
+
+const html5QrCode = new Html5Qrcode("reader");
+
+Html5Qrcode.getCameras().then(devices => {
+    if (devices && devices.length) {
+        html5QrCode.start(
+            devices[0].id,
+            {
+                fps: 10,
+                qrbox: 250
+            },
+            onScanSuccess
+        );
+    }
+});
+</script>
+</body>
+</html>
