@@ -17,7 +17,7 @@ button:hover { background: #0056b3; }
 
 <body>
 
-<h2>QR KODU OKUT ARAÇ SAHİBİNE ULAŞ</h2>
+<h2></h2>ARAÇ SAHİBİNE ULAŞ</h2>
 <p>QR kodu arka kameraya gösterin</p>
 
 <button onclick="startScanner()">QR Oku</button>
@@ -48,7 +48,7 @@ async function startScanner() {
                 html5QrCode = null;
 
                 // QR içindeki metin
-                window.location.href = "zeynelcoder.github.io/qr/"+decodedText;
+                window.location.href = "./"+decodedText;
 
                 // İstersen buradan backend'e gönderebilirsin
                 // fetch("/api/qr-scan", { method:"POST", body: JSON.stringify({ token: decodedText }) })
