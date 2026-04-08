@@ -48,8 +48,7 @@ async function startScanner() {
                 html5QrCode = null;
 
                 // QR içindeki metin
-                alert("QR Okundu: " + decodedText);
-                console.log("QR metni:", decodedText);
+                window.location.href = "zeynelcoder.github.io/qr/token/"+decodedText;
 
                 // İstersen buradan backend'e gönderebilirsin
                 // fetch("/api/qr-scan", { method:"POST", body: JSON.stringify({ token: decodedText }) })
