@@ -1,36 +1,109 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://unpkg.com/html5-qrcode"></script>
-</head>
-<body>
-    <h1>reader</h1>
-    <div id="reader" style="width:300px"></div>
-    <script>
-function onScanSuccess(decodedText, decodedResult) {
-    console.log("QR bulundu:", decodedText);
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Kod Oku</title>
 
-    // QR içeriğine yönlendir
-    window.location.href = decodedText;
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 20px;
 }
 
-const html5QrCode = new Html5Qrcode("reader");
+h2 {
+    margin-top: 20px;
+}
 
-Html5Qrcode.getCameras().then(devices => {
-    if (devices && devices.length) {
-        html5QrCode.start(
-            devices[0].id,
+#reader {
+    width: 320px;
+    margin: 20px auto;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+</style>
+</head>
+
+<body>
+
+<h2>QR Kod Okuyucu</h2>
+<p>QR kodu arka kameraya gösterin</p>
+
+<button onclick="startScanner()">QR Oku</button>
+
+<div id="reader"></div>
+
+<script>
+
+let html5QrCode;
+
+async function startScanner() {
+
+    // tekrar başlatmayı engelle
+    if (html5QrCode) return;
+
+    html5QrCode = new Html5Qrcode("reader");
+
+    try {
+        const devices = await Html5Qrcode.getCameras();
+
+        if (!devices.length) {
+            alert("Kamera bulunamadı");
+            return;
+        }
+
+        // Arka kamerayı bul
+        let backCamera = devices.find(device =>
+            device.label.toLowerCase().includes("back") ||
+            device.label.toLowerCase().includes("environment")
+        );
+
+        // Bulamazsa son kamerayı seç
+        if (!backCamera) {
+            backCamera = devices[devices.length - 1];
+        }
+
+        await html5QrCode.start(
+            backCamera.id,
             {
                 fps: 10,
                 qrbox: 250
             },
-            onScanSuccess
+            async (decodedText) => {
+
+                // Kamerayı durdur
+                await html5QrCode.stop();
+                html5QrCode = null;
+
+                // QR içeriğine git
+                window.location.href = decodedText;
+            }
         );
+
+    } catch (err) {
+        console.error(err);
+        alert("Kamera başlatılamadı");
     }
-});
+}
+
 </script>
+
 </body>
 </html>
