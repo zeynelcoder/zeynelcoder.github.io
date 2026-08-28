@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hızlı Panel</title>
+    <link rel="icon" type="image/x-icon" href="img/HP-6.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-color: #333;
+            --card-hover: rgba(255, 255, 255, 0.7);
+            --modal-bg: rgba(255, 255, 255, 0.9);
+            --default-icon: 'https://zeynelcoder.github.io/hizlipanel/HP.png';
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #050505;
+            --glass-bg: rgba(15, 15, 15, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-color: #f1f1f1;
+            --card-hover: rgba(30, 30, 30, 0.9);
+            --modal-bg: rgba(10, 10, 10, 0.95);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top right, rgba(120, 119, 198, 0.15), transparent 50%),
+                              radial-gradient(circle at bottom left, rgba(74, 222, 128, 0.1), transparent 50%);
+            color: var(--text-color);
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .top-bar-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .top-bar-left, .top-bar-right {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            gap: 20px;
+        }
+
+        .widgets { font-size: 0.9rem; font-weight: 600; }
+        .widget-item { display: flex; align-items: center; gap: 8px; }
+
+        .controls button {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-color);
+            border: 1px solid var(--glass-border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+        .controls button:hover { background: var(--card-hover); }
+
+        .container {
+            padding: 20px 30px 50px 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .category {
+            padding: 20px;
+            width: max-content; 
+            min-width: 280px;
+            max-width: 100%;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .category-header h2 { margin: 0; font-size: 1.2rem; }
+        .category-header button {
+            background: transparent; border: 1px solid red; color: red;
+            padding: 3px 8px; border-radius: 6px; cursor: pointer; transition: 0.2s;
+        }
+        .category-header button:hover { background: red; color: white; }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 110px));
+            gap: 15px;
+            min-height: 50px;
+        }
+
+        .link-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.2s, background 0.2s;
+            cursor: grab;
+            position: relative;
+            border-radius: 12px;
+        }
+
+        .link-card:active { cursor: grabbing; }
+        .link-card:hover { background: var(--card-hover); transform: translateY(-4px); }
+        .link-card img { width: 44px; height: 44px; border-radius: 10px; margin-bottom: 10px; object-fit: cover; }
+        .link-card span { font-size: 0.85rem; text-align: center; word-break: break-word; line-height: 1.2;}
+        
+        .action-btn {
+            position: absolute;
+            top: 6px;
+            border: none;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 10px;
+            cursor: pointer;
+            opacity: 0;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .delete-btn { right: 6px; background: #ef4444; color: white; }
+        .edit-btn { right: 32px; background: #3b82f6; color: white; }
+        
+        .link-card:hover .action-btn { opacity: 1; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--modal-bg);
+            padding: 30px;
+            width: 340px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+        .modal-content input, .modal-content select {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            color: var(--text-color); border-radius: 8px; box-sizing: border-box;
+        }
+        .icon-options { margin-bottom: 15px; font-size: 0.9rem; display:flex; flex-direction: column; gap: 8px;}
+        .icon-options label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        
+        .modal-buttons { display: flex; gap: 10px; margin-top: 10px;}
+        .modal-buttons button { flex: 1; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;}
+        .btn-save { background: #3b82f6; color: white; }
+        .btn-save:hover { background: #2563eb; }
+        .btn-cancel { background: #ef4444; color: white; }
+        .btn-cancel:hover { background: #dc2626; }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-bar-wrapper">
+        <div class="top-bar-left glass widgets">
+            <div class="widget-item" id="time-widget">🕒 --:--:--</div>
+            <div class="widget-item" id="weather-widget">☁️ --°C</div>
+            <div class="widget-item" id="usd-widget">Dolar --₺</div>
+            <div class="widget-item" id="gold-widget">Gram Altın --₺</div>
+        </div>
+        <div class="top-bar-right glass controls">
+            <button onclick="toggleTheme()">🌓 Tema</button>
+            <button onclick="openCategoryModal()">+ Kategori</button>
+            <button onclick="openLinkModal()">+ Link Ekle</button>
+        </div>
+    </div>
+
+    <div class="container" id="dashboard">
+        <!-- Kategoriler JS ile buraya yüklenecek -->
+    </div>
+
+    <div class="modal" id="category-modal">
+        <div class="modal-content">
+            <h3>Yeni Kategori</h3>
+            <input type="text" id="cat-name" placeholder="Kategori Adı">
+            <div class="modal-buttons">
+                <button class="btn-save" onclick="saveCategory()">Kaydet</button>
+                <button class="btn-cancel" onclick="closeModals()">İptal</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="link-modal">
+        <div class="modal-content">
+            <h3 id="link-modal-title">Yeni Link</h3>
+            <input type="text" id="link-name" placeholder="Site Adı (örn: GitHub)">
+            <input type="url" id="link-url" placeholder="URL (https://...)">
+            <select id="link-category"></select>
+            
+            <div class="icon-options">
+                <span>İkon Seçimi:</span>
+                <label><input type="radio" name="icon-type" value="favicon" checked onchange="toggleIconInput()"> Favicon Çek (Otomatik)</label>
+                <label><input type="radio" name="icon-type" value="file" onchange="toggleIconInput()"> Dosyadan Yükle</label>
+                <label><input type="radio" name="icon-type" value="url" onchange="toggleIconInput()"> Görsel URL</label>
+            </div>
+            
+            <input type="file" id="link-file" accept="image/*" style="display:none;">
+            <input type="text" id="link-icon-url" placeholder="Görsel URL'si" style="display:none;">
+
+            <div class="modal-buttons">
+                <button class="btn-save" onclick="saveLink()">Kaydet</button>
+                <button class="btn-cancel" onclick="closeModals()">İptal</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let appData = JSON.parse(localStorage.getItem('hizliPanelDataV2')) || {
+            theme: 'dark',
+            categories: [
+                { id: 'cat_1', name: 'Geliştirme', links: [{ id: 'l_1', name: 'GitHub', url: 'https://github.com', iconType: 'favicon', iconData: '' }] },
+                { id: 'cat_2', name: 'Günlük', links: [{ id: 'l_2', name: 'YouTube', url: 'https://youtube.com', iconType: 'favicon', iconData: '' }] }
+            ]
+        };
+
+        let editingLinkId = null;
+        let editingCatId = null;
+        let uploadedFileBase64 = '';
+        const fallbackIcon = 'https://zeynelcoder.github.io/hizlipanel/HP.png';
+
+        function saveData() { localStorage.setItem('hizliPanelDataV2', JSON.stringify(appData)); }
+
+        // Tema
+        function applyTheme() { document.documentElement.setAttribute('data-theme', appData.theme); }
+        function toggleTheme() {
+            appData.theme = appData.theme === 'dark' ? 'light' : 'dark';
+            applyTheme(); saveData();
+        }
+        applyTheme();
+
+        // Saat (Saniyeli)
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('time-widget').innerHTML = `🕒 ${now.toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit', second:'2-digit'})}`;
+        }
+        setInterval(updateTime, 1000); updateTime();
+
+        // Hava Durumu
+        async function updateWeather() {
+            try {
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true');
+                const data = await res.json();
+                document.getElementById('weather-widget').innerHTML = `☁️ ${data.current_weather.temperature}°C`;
+            } catch (e) {}
+        }
+        updateWeather();
+
+        // Canlı Finans Verileri
+        async function updateFinance() {
+            try {
+                const res = await fetch('https://finans.truncgil.com/v3/today.json');
+                const data = await res.json();
+                
+                const usd = data['USD'].Selling;
+                const gold = data['gram-altin'].Selling;
+                
+                document.getElementById('usd-widget').innerHTML = `Dolar ${usd}₺`;
+                document.getElementById('gold-widget').innerHTML = `Gram Altın ${gold}₺`;
+            } catch (e) {
+                try {
+                    const resUsd = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+                    const dataUsd = await resUsd.json();
+                    document.getElementById('usd-widget').innerHTML = `Dolar ${dataUsd.rates.TRY.toFixed(2)}₺`;
+                } catch (err) {
+                    document.getElementById('usd-widget').innerHTML = `Dolar --₺`;
+                }
+            }
+        }
+        updateFinance();
+        setInterval(updateFinance, 300000); 
+
+        // Dosya Yükleme
+        document.getElementById('link-file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(event) { uploadedFileBase64 = event.target.result; };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function toggleIconInput() {
+            const type = document.querySelector('input[name="icon-type"]:checked').value;
+            document.getElementById('link-file').style.display = type === 'file' ? 'block' : 'none';
+            document.getElementById('link-icon-url').style.display = type === 'url' ? 'block' : 'none';
+        }
+
+        function renderDashboard() {
+            const dashboard = document.getElementById('dashboard');
+            dashboard.innerHTML = '';
+            const catSelect = document.getElementById('link-category');
+            catSelect.innerHTML = '';
+
+            appData.categories.forEach(cat => {
+                catSelect.appendChild(new Option(cat.name, cat.id));
+
+                const catDiv = document.createElement('div');
+                catDiv.className = 'category glass';
+                catDiv.innerHTML = `
+                    <div class="category-header">
+                        <h2>${cat.name}</h2>
+                        <button onclick="deleteCategory('${cat.id}')">Sil</button>
+                    </div>
+                    <div class="links-grid" id="${cat.id}"></div>
+                `;
+                dashboard.appendChild(catDiv);
+
+                const grid = document.getElementById(cat.id);
+                
+                cat.links.forEach(link => {
+                    let finalIconUrl = fallbackIcon;
+
+                    if (link.iconType === 'favicon') {
+                        finalIconUrl = `https://s2.googleusercontent.com/s2/favicons?domain=${link.url}&sz=64`;
+                    } else if (link.iconType === 'file' && link.iconData) {
+                        finalIconUrl = link.iconData;
+                    } else if (link.iconType === 'url' && link.iconData) {
+                        finalIconUrl = link.iconData;
+                    }
+
+                    const linkEl = document.createElement('a');
+                    linkEl.href = link.url;
+                    
+                    // LİNKLERİN YENİ SEKMELERDE AÇILMASI İÇİN EKLENEN KISIM
+                    linkEl.target = '_blank';
+                    linkEl.rel = 'noopener noreferrer';
+                    
+                    linkEl.className = 'link-card glass';
+                    linkEl.dataset.id = link.id;
+                    linkEl.innerHTML = `
+                        <button class="action-btn edit-btn" onclick="event.preventDefault(); openEditModal('${cat.id}', '${link.id}')">✎</button>
+                        <button class="action-btn delete-btn" onclick="event.preventDefault(); deleteLink('${cat.id}', '${link.id}')">X</button>
+                        <img src="${finalIconUrl}" alt="${link.name}" onerror="this.src='${fallbackIcon}'">
+                        <span>${link.name}</span>
+                    `;
+                    grid.appendChild(linkEl);
+                });
+
+                new Sortable(grid, {
+                    group: 'shared',
+                    animation: 150,
+                    ghostClass: 'glass',
+                    onEnd: function (evt) {
+                        const fromCat = appData.categories.find(c => c.id === evt.from.id);
+                        const toCat = appData.categories.find(c => c.id === evt.to.id);
+                        const [movedLink] = fromCat.links.splice(fromCat.links.findIndex(l => l.id === evt.item.dataset.id), 1);
+                        toCat.links.splice(evt.newIndex, 0, movedLink);
+                        saveData();
+                    },
+                });
+            });
+        }
+
+        // Modallar
+        function closeModals() { 
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active')); 
+            editingLinkId = null;
+            editingCatId = null;
+            uploadedFileBase64 = '';
+        }
+
+        function openCategoryModal() { 
+            document.getElementById('cat-name').value = '';
+            document.getElementById('category-modal').classList.add('active'); 
+        }
+        
+        function openLinkModal() { 
+            document.getElementById('link-modal-title').innerText = "Yeni Link Ekle";
+            document.getElementById('link-name').value = '';
+            document.getElementById('link-url').value = '';
+            document.getElementById('link-icon-url').value = '';
+            document.getElementById('link-file').value = '';
+            document.querySelector('input[value="favicon"]').checked = true;
+            toggleIconInput();
+            document.getElementById('link-modal').classList.add('active'); 
+        }
+
+        function openEditModal(catId, linkId) {
+            editingCatId = catId;
+            editingLinkId = linkId;
+            const cat = appData.categories.find(c => c.id === catId);
+            const link = cat.links.find(l => l.id === linkId);
+
+            document.getElementById('link-modal-title').innerText = "Linki Düzenle";
+            document.getElementById('link-name').value = link.name;
+            document.getElementById('link-url').value = link.url;
+            
+            if(document.getElementById('link-category').options.length > 0) {
+                document.getElementById('link-category').value = catId;
+            }
+            
+            document.querySelector(`input[value="${link.iconType || 'favicon'}"]`).checked = true;
+            toggleIconInput();
+
+            if(link.iconType === 'url') document.getElementById('link-icon-url').value = link.iconData;
+            if(link.iconType === 'file') uploadedFileBase64 = link.iconData;
+
+            document.getElementById('link-modal').classList.add('active');
+        }
+
+        function saveCategory() {
+            const name = document.getElementById('cat-name').value;
+            if(!name) return;
+            appData.categories.push({ id: 'cat_' + Date.now(), name: name, links: [] });
+            saveData(); renderDashboard(); closeModals();
+        }
+
+        function saveLink() {
+            const name = document.getElementById('link-name').value;
+            let url = document.getElementById('link-url').value;
+            let catId = document.getElementById('link-category').value;
+            const iconType = document.querySelector('input[name="icon-type"]:checked').value;
+            let iconData = '';
+
+            if(!name || !url) return alert("Ad ve URL zorunludur!");
+            if (!url.startsWith('http')) url = 'https://' + url;
+
+            if (iconType === 'url') iconData = document.getElementById('link-icon-url').value;
+            if (iconType === 'file') iconData = uploadedFileBase64;
+
+            if (appData.categories.length === 0 || !catId) {
+                catId = 'cat_' + Date.now();
+                appData.categories.push({ id: catId, name: 'Günlük', links: [] });
+            }
+
+            const category = appData.categories.find(c => c.id === catId);
+
+            if (editingLinkId && category) {
+                const oldCat = appData.categories.find(c => c.id === editingCatId);
+                const linkIndex = oldCat.links.findIndex(l => l.id === editingLinkId);
+                const [editedLink] = oldCat.links.splice(linkIndex, 1);
+                
+                editedLink.name = name;
+                editedLink.url = url;
+                editedLink.iconType = iconType;
+                editedLink.iconData = iconData;
+                
+                category.links.push(editedLink);
+            } else if (category) {
+                category.links.push({ id: 'l_' + Date.now(), name, url, iconType, iconData });
+            }
+            
+            saveData(); renderDashboard(); closeModals();
+        }
+
+        function deleteLink(catId, linkId) {
+            if(!confirm("Bu kısayolu silmek istediğine emin misin?")) return;
+            const category = appData.categories.find(c => c.id === catId);
+            category.links = category.links.filter(l => l.id !== linkId);
+            saveData(); renderDashboard();
+        }
+
+        function deleteCategory(catId) {
+            if(!confirm("Kategoriyi ve içindeki tüm linkleri silmek istediğine emin misin?")) return;
+            appData.categories = appData.categories.filter(c => c.id !== catId);
+            saveData(); renderDashboard();
+        }
+
+        renderDashboard();
+    </script>
+</body>
+</html>
