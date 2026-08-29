@@ -35,6 +35,10 @@
             color: var(--text-color);
             min-height: 100vh;
             transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-user-select: none; /* Safari için */
+    -moz-user-select: none; /* Firefox için */
+    -ms-user-select: none; /* IE10+/Edge için */
+    user-select: none; /* Standart kullanım */
         }
 
         .glass {
