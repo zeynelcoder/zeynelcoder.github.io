@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araç Numaratör Hizmeti</title>
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            width: 100%;
+            transition: background 0.2s;
+            box-sizing: border-box;
+            font-weight: 600;
+        }
+        button:hover { background-color: #1d4ed8; }
+        button:disabled { background-color: #93c5fd; cursor: wait; }
+        
+        .arama-butonu {
+            background-color: #16a34a;
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            box-sizing: border-box;
+            transition: background 0.2s;
+            text-align: center;
+        }
+        .arama-butonu:hover { background-color: #15803d; }
+        
+        .iptal-butonu { background-color: #6b7280; }
+        .iptal-butonu:hover { background-color: #4b5563; }
+        .google-btn { background-color: #4285f4; }
+        .google-btn:hover { background-color: #357ae8; }
+        .cikis-btn { background-color: #ef4444; margin-top: 15px; }
+        .cikis-btn:hover { background-color: #dc2626; }
+        .duzenle-btn { background-color: #8b5cf6; margin-bottom: 15px; }
+        .duzenle-btn:hover { background-color: #7c3aed; }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 14px 0;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 6px;
+        }
+        #durum {
+            margin-top: 15px;
+            font-weight: 500;
+            min-height: 24px;
+        }
+        #pic {
+            width: 80%;
+            max-height: 220px;
+            object-fit: cover;
+            margin: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        .arac-kart {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        .arac-kart img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        .link-kutusu {
+            background-color: #eff6ff;
+            border: 1px dashed #93c5fd;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            word-break: break-all;
+            margin: 6px 0;
+            color: #1e40af;
+        }
+        .mesaj-kart {
+            background-color: #f9fafb;
+            border-left: 4px solid #2563eb;
+            padding: 10px;
+            margin-bottom: 8px;
+            text-align: left;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .mesaj-tarih {
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+        .tel-link {
+            color: #16a34a;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+        .tel-link:hover { text-decoration: underline; }
+        .gizli { display: none !important; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ==================== 1. GİRİŞ EKRANI ==================== -->
+    <div id="giris-ekrani" class="gizli">
+        <h2>🚗 Numaratör Hizmeti</h2>
+        <p style="color: #4b5563; margin-bottom: 25px;">Kendi araç numaratör sayfanızı oluşturun ve özelleştirin.</p>
+        <button onclick="googleIleGiris()" class="google-btn">🌐 Google ile Kayıt Ol / Giriş Yap</button>
+    </div>
+
+    <!-- ==================== 2. İLK KAYIT EKRANI ==================== -->
+    <div id="kayit-ekrani" class="gizli">
+        <h2>📝 Profilinizi Tamamlayın</h2>
+        <p style="color: #6b7280; font-size: 14px; margin-bottom: 15px;">Aramalarda ve mesajlarda kullanılacak bilgilerinizi girin.</p>
+        
+        <label for="reg-ad">Adınız ve Soyadınız:</label>
+        <input type="text" id="reg-ad" placeholder="Örn: Ahmet Yılmaz">
+
+        <label for="reg-tel">Telefon Numaranız (Arama Tuşu İçin):</label>
+        <input type="tel" id="reg-tel" placeholder="05XX XXX XX XX">
+
+        <button onclick="kaydiTamamla()">Kaydı Tamamla ve Panele Git</button>
+    </div>
+
+    <!-- ==================== 3. YÖNETİM PANELİ ==================== -->
+    <div id="duzenleme-ekrani" class="gizli">
+        <h2>⚙️ Araç Yönetim Paneli</h2>
+        
+        <label for="form-ad">Ad Soyadınız:</label>
+        <input type="text" id="form-ad" placeholder="Ad Soyad">
+
+        <label for="form-tel">Telefon Numaranız:</label>
+        <input type="tel" id="form-tel" placeholder="05XX XXX XX XX">
+
+        <button onclick="profilGuncelle()" style="padding: 8px; font-size: 13px; background-color: #4f46e5;">Profil Bilgilerini Güncelle</button>
+
+        <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 20px 0;">
+
+        <!-- Yeni Araç Ekleme Formu -->
+        <h3 style="text-align: left; font-size: 16px; margin-bottom: 8px;">➕ Yeni Araç Ekle</h3>
+        
+        <label for="arac-baslik">Araç Marka / Modeli:</label>
+        <input type="text" id="arac-baslik" placeholder="Örn: Honda PCX 125">
+
+        <label for="arac-plaka">Plaka No:</label>
+        <input type="text" id="arac-plaka" placeholder="Örn: 34 ABC 123">
+
+        <label for="arac-dosya">Araç Fotoğrafı (Kamera ile Çek veya Galeri/Dosyalardan Seç):</label>
+        <input type="file" id="arac-dosya" accept="image/*">
+
+        <button onclick="aracEkle()">🚗 Aracı Kaydet</button>
+
+        <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 20px 0;">
+
+        <!-- Kayıtlı Araçlar Listesi -->
+        <h3 style="text-align: left; font-size: 16px; margin-bottom: 10px;">📋 Kayıtlı Araçlarınız</h3>
+        <div id="araclar-listesi">
+            <p style="color: #9ca3af; font-size: 13px;">Henüz kayıtlı bir aracınız yok.</p>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 20px 0;">
+
+        <!-- Gelen Mesajlar -->
+        <h3 style="text-align: left; font-size: 16px; margin-bottom: 10px;">📩 Gelen Mesajlar</h3>
+        <div id="gelen-mesajlar-kutusu">
+            <p style="color: #9ca3af; font-size: 13px;">Henüz gelen mesaj yok.</p>
+        </div>
+
+        <button onclick="cikisYap()" class="cikis-btn">Çıkış Yap</button>
+    </div>
+
+    <!-- ==================== 4. ZİYARETÇİ EKRANI (PUBLIC VIEW) ==================== -->
+    <div id="ziyaretci-ekrani" class="gizli">
+        
+        <div id="duzenle-btn-kutusu" class="gizli">
+            <button onclick="panelaDon()" class="duzenle-btn">⚙️ Kendi Sayfamı Düzenle / Panele Dön</button>
+        </div>
+
+        <img id="pic" src="" alt="Araç Görseli">
+        
+        <h2 id="sahip-ismi" style="margin-top:15px; font-size: 20px; color: #1f2937;"></h2>
+        <p id="arac-basligi-view" style="color: #6b7280; font-size: 14px; margin-top: -8px; margin-bottom: 15px;"></p>
+        
+        <div id="ana-menu">
+            <p style="color: #4b5563; margin-bottom: 15px; font-size: 14px;">Araç sahibine hızlı mesaj gönderin:</p>
+            <button onclick="telefonIste('nezamangelirsin')">Ne zaman geleceksiniz?</button>
+            <button onclick="telefonIste('neredesiniz')">Neredesiniz?</button>
+            <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 15px 0;">
+            <a id="arama-linki" href="#" class="arama-butonu">📞 Hemen Ara</a>
+        </div>
+
+        <div id="telefon-ekrani" class="gizli">
+            <p style="color: #4b5563; margin-bottom: 10px;">Araç sahibinin size dönüş yapabilmesi için numaranızı girin:</p>
+            <input type="tel" id="telefon-input" placeholder="05XX XXX XX XX">
+            <button onclick="mesajGonder()">Onayla ve Gönder</button>
+            <button onclick="iptalEt()" class="iptal-butonu">Geri Dön</button>
+        </div>
+    </div>
+
+    <div id="durum"></div>
+
+</div>
+
+<script>
+    const SUPABASE_URL = "https://lmpbedcvbupkxvszvzpg.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_yuEEw2fPvfjsNmVq5uKldw_0jJFG-Q4";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const hazirCevaplar = {
+        nezamangelirsin: "Ne zaman geleceksiniz?",
+        neredesiniz: "Neredesiniz?"
+    };
+
+    let mevcutKullanici = null;
+    let secilenKonu = "";
+    let hedefVehicleId = "";
+    let hedefAracSahibiId = "";
+
+    function slugify(text) {
+        if (!text) return "";
+        const trMap = {'ç':'c', 'Ç':'c', 'ğ':'g', 'Ğ':'g', 'ş':'s', 'Ş':'s', 'ı':'i', 'İ':'i', 'ö':'o', 'Ö':'o', 'ü':'u', 'Ü':'u'};
+        return text.toString().toLowerCase()
+            .replace(/[çğşıöüÇĞŞİÖÜ]/g, m => trMap[m])
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '');
+    }
+
+    function soyisimSansurle(tamAd) {
+        if (!tamAd) return "Araç Sahibi";
+        const parcalar = tamAd.trim().split(" ");
+        if (parcalar.length === 1) return parcalar[0];
+        
+        const soyad = parcalar.pop();
+        const sansurluSoyad = soyad[0] + "*".repeat(Math.max(soyad.length - 1, 2));
+        return [...parcalar, sansurluSoyad].join(" ");
+    }
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const vParam = urlParams.get('v');
+
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session) mevcutKullanici = session.user;
+
+        if (vParam) {
+            await ziyaretciSayfasiniYukle(vParam);
+        } else {
+            if (mevcutKullanici) {
+                await kullaniciAkisiniYonet();
+            } else {
+                ekranGoster("giris-ekrani");
+            }
+        }
+    });
+
+    function ekranGoster(ekranId) {
+        document.getElementById("giris-ekrani").classList.add("gizli");
+        document.getElementById("kayit-ekrani").classList.add("gizli");
+        document.getElementById("duzenleme-ekrani").classList.add("gizli");
+        document.getElementById("ziyaretci-ekrani").classList.add("gizli");
+        document.getElementById(ekranId).classList.remove("gizli");
+    }
+
+    async function googleIleGiris() {
+        await supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: { redirectTo: window.location.origin + window.location.pathname }
+        });
+    }
+
+    async function cikisYap() {
+        await supabaseClient.auth.signOut();
+        window.location.href = window.location.pathname;
+    }
+
+    function panelaDon() {
+        window.location.href = window.location.pathname;
+    }
+
+    async function kullaniciAkisiniYonet() {
+        const userId = mevcutKullanici.id;
+
+        const { data: profile } = await supabaseClient
+            .from('profiles')
+            .select('*')
+            .eq('id', userId)
+            .single();
+
+        if (!profile || !profile.is_onboarded) {
+            document.getElementById("reg-ad").value = mevcutKullanici.user_metadata.full_name || "";
+            ekranGoster("kayit-ekrani");
+        } else {
+            ekranGoster("duzenleme-ekrani");
+            document.getElementById("form-ad").value = profile.full_name || "";
+            document.getElementById("form-tel").value = profile.phone_number || "";
+            
+            await araclarıYukle(userId);
+            await gelenMesajlariYukle(userId);
+            realtimeBildirimleriBaslat(userId);
+        }
+    }
+
+    async function kaydiTamamla() {
+        const full_name = document.getElementById("reg-ad").value.trim();
+        const phone_number = document.getElementById("reg-tel").value.trim();
+
+        if (!full_name || !phone_number) {
+            alert("Lütfen adınız ve telefon numaranızı girin.");
+            return;
+        }
+
+        await supabaseClient.from('profiles').upsert({
+            id: mevcutKullanici.id,
+            email: mevcutKullanici.email,
+            full_name,
+            phone_number,
+            is_onboarded: true,
+            updated_at: new Date()
+        });
+
+        await kullaniciAkisiniYonet();
+    }
+
+    async function profilGuncelle() {
+        const full_name = document.getElementById("form-ad").value.trim();
+        const phone_number = document.getElementById("form-tel").value.trim();
+        const durum = document.getElementById("durum");
+
+        const { error } = await supabaseClient.from('profiles').upsert({
+            id: mevcutKullanici.id,
+            full_name,
+            phone_number,
+            updated_at: new Date()
+        });
+
+        if (!error) {
+            durum.innerText = "✅ Profil başarıyla güncellendi!";
+            durum.style.color = "#16a34a";
+        }
+    }
+
+    async function gorselYukle(file) {
+        if (!file) return "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80";
+        
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Math.random()}_${Date.now()}.${fileExt}`;
+        const filePath = `${mevcutKullanici.id}/${fileName}`;
+
+        let { error } = await supabaseClient.storage.from('vehicle-photos').upload(filePath, file);
+
+        if (!error) {
+            const { data } = supabaseClient.storage.from('vehicle-photos').getPublicUrl(filePath);
+            return data.publicUrl;
+        }
+
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(file);
+        });
+    }
+
+    async function aracEkle() {
+        const title = document.getElementById("arac-baslik").value.trim();
+        const plate_number = document.getElementById("arac-plaka").value.trim();
+        const fileInput = document.getElementById("arac-dosya");
+        const durum = document.getElementById("durum");
+
+        if (!title || !plate_number) {
+            alert("Lütfen araç adı ve plaka numarasını girin.");
+            return;
+        }
+
+        durum.innerText = "Fotoğraf işleniyor ve araç kaydediliyor...";
+        durum.style.color = "#2563eb";
+
+        const photo_url = await gorselYukle(fileInput.files[0]);
+
+        const { error } = await supabaseClient.from('vehicles').insert({
+            owner_id: mevcutKullanici.id,
+            title,
+            plate_number,
+            photo_url
+        });
+
+        if (!error) {
+            durum.innerText = "✅ Araç eklendi!";
+            durum.style.color = "#16a34a";
+            document.getElementById("arac-baslik").value = "";
+            document.getElementById("arac-plaka").value = "";
+            fileInput.value = "";
+            await araclarıYukle(mevcutKullanici.id);
+        } else {
+            durum.innerText = "❌ Hata: " + error.message;
+            durum.style.color = "#dc2626";
+        }
+    }
+
+    async function aracSil(vId) {
+        if (confirm("Bu aracı silmek istediğinize emin misiniz?")) {
+            await supabaseClient.from('vehicles').delete().eq('id', vId);
+            await araclarıYukle(mevcutKullanici.id);
+        }
+    }
+
+    // Sadece Model + Plaka slug yapısı oluşturma
+    async function araclarıYukle(userId) {
+        const listeKutusu = document.getElementById("araclar-listesi");
+        const { data: araclar } = await supabaseClient
+            .from('vehicles')
+            .select('*')
+            .eq('owner_id', userId)
+            .order('created_at', { ascending: false });
+
+        if (!araclar || araclar.length === 0) {
+            listeKutusu.innerHTML = `<p style="color: #9ca3af; font-size: 13px;">Henüz kayıtlı bir aracınız yok.</p>`;
+            return;
+        }
+
+        listeKutusu.innerHTML = araclar.map(v => {
+            const slugModel = slugify(v.title);
+            const slugPlaka = slugify(v.plate_number || '');
+            const urlSlug = `${slugModel}-${slugPlaka}`;
+            const link = `${window.location.origin}${window.location.pathname}?v=${urlSlug}`;
+            
+            return `
+                <div class="arac-kart">
+                    <img src="${v.photo_url}" alt="Araç">
+                    <strong>${v.title} (${v.plate_number || 'Plakasız'})</strong>
+                    <div class="link-kutusu">🔗 Link: <a href="${link}" target="_blank">${link}</a></div>
+                    <button onclick="aracSil('${v.id}')" style="background-color:#ef4444; padding:6px; font-size:12px; margin-top:5px;">Sil</button>
+                </div>
+            `;
+        }).join('');
+    }
+
+    async function gelenMesajlariYukle(userId) {
+        const mesajKutusu = document.getElementById("gelen-mesajlar-kutusu");
+        
+        const { data: mesajlar } = await supabaseClient
+            .from('messages')
+            .select('*, vehicles(title, plate_number)')
+            .eq('owner_id', userId)
+            .order('created_at', { ascending: false });
+
+        if (!mesajlar || mesajlar.length === 0) {
+            mesajKutusu.innerHTML = `<p style="color: #9ca3af; font-size: 13px;">Henüz gelen mesaj yok.</p>`;
+            return;
+        }
+
+        mesajKutusu.innerHTML = mesajlar.map(m => `
+            <div class="mesaj-kart">
+                <a href="tel:${m.visitor_phone}" class="tel-link">📞 ${m.visitor_phone} (Aramak için Tıkla)</a><br>
+                <span>${m.message_text}</span>
+                ${m.vehicles ? `<div style="font-size:11px; color:#4b5563; margin-top:2px;">🚗 Araç: ${m.vehicles.title} (${m.vehicles.plate_number || ''})</div>` : ''}
+                <div class="mesaj-tarih">${new Date(m.created_at).toLocaleString('tr-TR')}</div>
+            </div>
+        `).join('');
+    }
+
+    // Model+Plaka Slug'ına göre Aracı ve Sahibini Getirme
+    async function ziyaretciSayfasiniYukle(targetSlug) {
+        let profile = null;
+        let vehicle = null;
+
+        // Bütün araçları ve ilişkili kullanıcı profilini çek
+        const { data: vList } = await supabaseClient
+            .from('vehicles')
+            .select('*, profiles(*)');
+
+        if (vList && vList.length > 0) {
+            const matched = vList.find(v => {
+                const slug = `${slugify(v.title)}-${slugify(v.plate_number || '')}`;
+                return targetSlug === slug;
+            });
+
+            if (matched) {
+                vehicle = matched;
+                profile = matched.profiles;
+                hedefVehicleId = vehicle.id;
+                hedefAracSahibiId = vehicle.owner_id;
+            }
+        }
+
+        if (!profile || !vehicle) {
+            document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>❌ Sayfa veya Araç Bulunamadı</h2>";
+            return;
+        }
+
+        ekranGoster("ziyaretci-ekrani");
+
+        if (mevcutKullanici && mevcutKullanici.id === hedefAracSahibiId) {
+            document.getElementById("duzenle-btn-kutusu").classList.remove("gizli");
+        }
+
+        document.getElementById("sahip-ismi").innerText = soyisimSansurle(profile.full_name);
+        document.getElementById("arac-basligi-view").innerText = `${vehicle.title} - ${vehicle.plate_number || ''}`;
+        document.getElementById("pic").src = vehicle.photo_url || "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80";
+
+        const aramaBtn = document.getElementById("arama-linki");
+        aramaBtn.href = `tel:${profile.phone_number}`;
+        aramaBtn.innerText = `📞 Hemen Ara (${profile.phone_number})`;
+    }
+
+    function telefonIste(secim) {
+        secilenKonu = secim;
+        document.getElementById("ana-menu").classList.add("gizli");
+        document.getElementById("telefon-ekrani").classList.remove("gizli");
+        document.getElementById("durum").innerText = "";
+        document.getElementById("telefon-input").focus();
+    }
+
+    function iptalEt() {
+        document.getElementById("telefon-ekrani").classList.add("gizli");
+        document.getElementById("ana-menu").classList.remove("gizli");
+        document.getElementById("telefon-input").value = "";
+        document.getElementById("durum").innerText = "";
+    }
+
+    async function mesajGonder() {
+        const telefonNumarasi = document.getElementById("telefon-input").value.trim();
+        const durumMetni = document.getElementById("durum");
+
+        if (telefonNumarasi.length < 10) {
+            durumMetni.innerText = "❌ Lütfen geçerli bir telefon numarası girin.";
+            durumMetni.style.color = "#dc2626";
+            return;
+        }
+
+        durumMetni.innerText = "Gönderiliyor...";
+        durumMetni.style.color = "#2563eb";
+
+        const mesajMetni = hazirCevaplar[secilenKonu];
+
+        const { error } = await supabaseClient.from('messages').insert({
+            owner_id: hedefAracSahibiId,
+            vehicle_id: hedefVehicleId || null,
+            visitor_phone: telefonNumarasi,
+            message_text: mesajMetni
+        });
+
+        if (!error) {
+            iptalEt();
+            durumMetni.innerText = "✅ Mesajınız araç sahibine iletildi!";
+            durumMetni.style.color = "#16a34a";
+        } else {
+            durumMetni.innerText = "❌ Mesaj iletilirken hata oluştu.";
+            durumMetni.style.color = "#dc2626";
+        }
+    }
+
+    function realtimeBildirimleriBaslat(userId) {
+        if ("Notification" in window && Notification.permission !== "granted") {
+            Notification.requestPermission();
+        }
+
+        supabaseClient
+            .channel('realtime_messages')
+            .on('postgres_changes', { 
+                event: 'INSERT', 
+                schema: 'public', 
+                table: 'messages', 
+                filter: `owner_id=eq.${userId}` 
+            }, payload => {
+                const yeniMesaj = payload.new;
+                gelenMesajlariYukle(userId);
+
+                if ("Notification" in window && Notification.permission === "granted") {
+                    new Notification("🚗 Yeni Araç Mesajı!", {
+                        body: `Tel: ${yeniMesaj.visitor_phone}\nMesaj: ${yeniMesaj.message_text}`,
+                        icon: 'https://cdn-icons-png.flaticon.com/512/3202/3202021.png'
+                    });
+                }
+            })
+            .subscribe();
+    }
+</script>
+
+</body>
+</html>
