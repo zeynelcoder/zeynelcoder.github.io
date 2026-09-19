@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hızlı Atıştırmalık & İçecek Servisi | Kapında</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Özel Animasyon Tanımları -->
+    <style>
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+        }
+        .whatsapp-animasyon {
+            animation: pulse-soft 3s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- ANA İÇERİK ALANI -->
+    <main class="py-12 lg:py-16">
+        <div class="max-w-2xl mx-auto px-4 text-center">
+            
+            <span class="inline-block bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+        🥂 GÖZTEPE TEKEL
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+                Canın Ne İstiyorsa, <span class="text-amber-400">Kapında!</span>
+            </h2>
+            <p class="text-slate-300 mb-8 text-sm sm:text-base">
+                Soğuk kolalar, taze kuruyemişler, en çıtır cipsler dakikalar içinde kapında. Hemen aşağıdan bize ulaşabilirsin.
+            </p>
+
+            <!-- EŞİT BOYUTTA WHATSAPP VE TELEFON BUTONLARI -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto mb-10">
+                <!-- Üst WhatsApp Butonu (Animasyonlu) -->
+                <a href="https://wa.me/905538289087?text=Merhaba,%20sipariş%20vermek%20istiyorum." target="_blank" 
+                   class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-6 rounded-2xl transition shadow-xl shadow-emerald-600/30 flex items-center justify-center space-x-3 text-base whatsapp-animasyon">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>WhatsApp Sipariş</span>
+                </a>
+                <a href="tel:05538289087" 
+                   class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-4 px-6 rounded-2xl transition shadow-xl shadow-amber-500/20 flex items-center justify-center space-x-3 text-base">
+                    <i class="fa-solid fa-phone text-xl"></i>
+                    <span>Hemen Ara</span>
+                </a>
+            </div>
+
+            <!-- BÖLGE LİSTESİ (Flexbox ile tek kalınca ortalanır) -->
+            <div class="bg-slate-800/50 border border-slate-700/60 p-6 rounded-2xl backdrop-blur-sm text-left">
+                <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4 text-center">
+                    <i class="fa-solid fa-location-dot text-amber-400 mr-2"></i>Hızlı Kurye Servis Bölgelerimiz
+                </h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <div class="bg-slate-900/80 border border-slate-700/50 py-2.5 px-4 rounded-xl text-sm font-medium text-slate-200 text-center w-36 sm:w-40">
+                        📍 Ataşehir
+                    </div>
+                    <div class="bg-slate-900/80 border border-slate-700/50 py-2.5 px-4 rounded-xl text-sm font-medium text-slate-200 text-center w-36 sm:w-40">
+                        📍 Kadıköy
+                    </div>
+                    <div class="bg-slate-900/80 border border-slate-700/50 py-2.5 px-4 rounded-xl text-sm font-medium text-slate-200 text-center w-36 sm:w-40">
+                        📍 Maltepe
+                    </div>
+
+                    <img src="img.png" alt="" srcset="">
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- GOOGLE YORUM / PUAN BANDI -->
+    <section class="pb-12 max-w-4xl mx-auto px-4">
+        <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700/80 p-6 rounded-2xl shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+            
+            <!-- Sol Taraf: Puan ve Yıldızlar -->
+            <div class="flex items-center space-x-4 text-center sm:text-left">
+                <div class="bg-amber-500/10 border border-amber-500/30 p-3 rounded-2xl">
+                    <span class="text-3xl font-black text-amber-400">4.8</span>
+                </div>
+                <div>
+                    <div class="flex text-amber-400 text-sm mb-1 justify-center sm:justify-start">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-sm">Google Müşteri Puanı</h4>
+                    <p class="text-xs text-slate-400">Yüzlerce mutlu müşterimizin değerlendirmesi</p>
+                </div>
+            </div>
+
+            <!-- Sağ Taraf: Google'da İncele Butonu -->
+            <a href="https://maps.app.goo.gl/2DZfKP2NxBwGK8Na7" target="_blank" 
+               class="bg-slate-800 hover:bg-slate-700 border border-slate-600/60 text-white px-5 py-3 rounded-xl text-xs font-semibold transition flex items-center space-x-2">
+                <i class="fa-brands fa-google text-amber-400 text-base"></i>
+                <span>Google Yorumlarını Oku</span>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- POPÜLER ÜRÜNLER KATEGORİLERİ -->
+    <section class="pb-16 max-w-6xl mx-auto px-4">
+        <div class="text-center mb-10">
+            <h3 class="text-2xl font-bold text-white mb-2">En Çok Satanlar</h3>
+            <p class="text-slate-400 text-sm">Gecenin veya günün her anı en çok tercih edilen kârlı lezzetler</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <!-- Ürün 1 -->
+            <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 text-center hover:border-amber-500/50 transition group">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition duration-300">🥤</div>
+                <h4 class="font-bold text-white mb-1">Soğuk İçecekler</h4>
+                <p class="text-xs text-slate-400">Kola, İce Tea, Enerji İçecekleri</p>
+            </div>
+            <!-- Ürün 2 -->
+            <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 text-center hover:border-amber-500/50 transition group">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition duration-300">🥜</div>
+                <h4 class="font-bold text-white mb-1">Taze Kuruyemiş</h4>
+                <p class="text-xs text-slate-400">Çekirdek, Fıstık, Kaju, Karışık</p>
+            </div>
+            <!-- Ürün 3 -->
+            <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 text-center hover:border-amber-500/50 transition group">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition duration-300">🥔</div>
+                <h4 class="font-bold text-white mb-1">Çıtır Cipsler</h4>
+                <p class="text-xs text-slate-400">Patates ve Mısır Cipsi Çeşitleri</p>
+            </div>
+            <!-- Ürün 4 -->
+            <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 text-center hover:border-amber-500/50 transition group">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition duration-300">🍫</div>
+                <h4 class="font-bold text-white mb-1">Atıştırmalıklar</h4>
+                <p class="text-xs text-slate-400">Çikolata, Gofret ve Sakızlar</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SABİT WHATSAPP BUTONU (Sağ altta nabız atan animasyonlu ikon) -->
+    <a href="https://wa.me/905000000000?text=Merhaba,%20sipariş%20vermek%20istiyorum." target="_blank" 
+       class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-full shadow-2xl shadow-emerald-600/50 flex items-center justify-center transition-all hover:scale-110 whatsapp-animasyon">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Hızlı Servis. Tüm hakları saklıdır. Sadece atıştırmalık ve içecek servisi yapılır.</p>
+    </footer>
+
+</body>
+</html>
